@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+{% include 'head.html.twig' %}
+<body>
+{% include 'header.html.twig' %}
+<div class="container">
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% block body %}{% endblock %}
+    {% else %}
+        <div class="container h-100 d-flex align-items-center justify-content-center flex-column mt-3">
+            <form action="{{ path('app_login') }}" method="post">
+                <label class="form-label" for="username">Username:</label>
+                <input class="form-control" type="text" id="username" name="_username"/>
+                <br>
+                <label class="form-label" for="password">Password:</label>
+                <input class="form-control" type="password" id="password" name="_password"/>
+                <br>
+                <button class="btn btn-primary" type="submit">Войти</button>
+            </form>
+        </div>
+    {% endif %}
+
+</div>
+</body>
+</html>
